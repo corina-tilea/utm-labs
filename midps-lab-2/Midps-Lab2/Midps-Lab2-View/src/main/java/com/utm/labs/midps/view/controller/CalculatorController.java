@@ -300,33 +300,39 @@ public class CalculatorController implements Initializable {
     }
 
     private void btn_alternateSign_on_click() {
-//        if(input.getText().length()>0 && input.getText().contains("=")==false){
-//            StringBuilder sb=new StringBuilder(input.getText());
-//            int signPos=Calculator.processInputLine(sb);
-////            LOG.info("Sign pos = "+signPos);
-////            LOG.info("SIGN = "+sb.charAt(signPos));
-//            if(signPos==-1){
-//                input.setText("-"+input.getText());
-//            } else {
-//                if(sb.charAt(signPos)==ADDITION){
-//                    System.out.println(sb);
-//                   sb.deleteCharAt(signPos);
-//                   sb.setCharAt(signPos, SUBTRACTION);
-//                   input.setText(sb.toString());
-//                }else {
-//                   sb.deleteCharAt(signPos);
-//                   sb.setCharAt(signPos, ADDITION);
-//                   input.setText(sb.toString());
-//                }
-//                
-//            }
-//                
-//        }
+      
+            checkPreviousResult();
+        
+        if (input.getText().length() > 0 && input.getText().contains("=") == false) {
+            StringBuilder sb = new StringBuilder(input.getText());
+            int signPos = Calculator.processInputLine(sb);
+            LOG.info("Sign pos = " + signPos);
+
+            if (signPos == -1) {
+               
+                    input.setText("-" + input.getText());
+                
+            } else {
+                LOG.info("SIGN = " + sb.charAt(signPos));
+                if (sb.charAt(signPos) == Calculator.ADDITION) {
+                    System.out.println(sb);
+                    sb.replace(signPos, signPos + 1, String.valueOf(Calculator.SUBTRACTION));
+                    input.setText(sb.toString());
+                } else {
+                    System.out.println(sb);
+                    sb.replace(signPos, signPos + 1, String.valueOf(Calculator.ADDITION));
+                    input.setText(sb.toString());
+                }
+
+            }
+
+        }
 
     }
 
     private void btn_clear_on_click() {
         if (input.getText().length() > 0) {
+            //Calculator.ClearUsed = true;
             input.setText(" ");
             input.setTextFill(Paint.valueOf("black"));
         }
@@ -367,6 +373,7 @@ public class CalculatorController implements Initializable {
 
     private void btn_power_on_click() {
         if (input.getText().length() > 0) {
+            checkPreviousResult();
             input.setText(input.getText() + "^");
         }
 
@@ -407,7 +414,7 @@ public class CalculatorController implements Initializable {
     private void btn_root_on_click() {
         if (input.getText().length() > 0) {
             checkPreviousResult();
-            input.setText("?" + input.getText());
+            input.setText("√" + input.getText());
         }
     }
 
@@ -453,11 +460,18 @@ public class CalculatorController implements Initializable {
 
     private boolean isSqrtOperation() {
 
-        if (input.getText().charAt(0) == '?') {
+        if (input.getText().charAt(0) == '√') {
             return true;
         }
 
         return false;
     }
 
+    private void eliminatePosibleSpace(){
+        StringBuilder sb=new StringBuilder();
+        if(sb.charAt(1)==' '){
+            sb.deleteCharAt(1);
+            input.setText(sb.toString());
+        }
+    }
 }

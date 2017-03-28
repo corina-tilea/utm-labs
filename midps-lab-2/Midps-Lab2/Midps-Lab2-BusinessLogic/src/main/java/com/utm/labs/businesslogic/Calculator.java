@@ -18,6 +18,8 @@ public class Calculator {
     public static final char POWER='^';
     public static final char NONE='?';
     
+    public static boolean ClearUsed=false;
+    
      public static ArrayList<String> getParameters(StringBuilder sb, String sign){
         ArrayList<String> parameters=new ArrayList<String>() ;
             int indexSign=sb.lastIndexOf(sign);
@@ -93,8 +95,8 @@ public class Calculator {
          return Calculator.NONE;
     }
     
-    private int processInputLine(StringBuilder sb) {
-        for (int i = sb.length()-1; i > 0; i--) {
+    public static int processInputLine(StringBuilder sb) {
+        for (int i = sb.length()-1; i >= 0; i--) {
             char sign = sb.charAt(i);
              switch(sign){
                  case Calculator.ADDITION:
