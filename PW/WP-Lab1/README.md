@@ -19,9 +19,9 @@ setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to
 5.  2 TextView elements had been added to the activity (one with default styles, one with custom style).
 
 6. 2 elements had been made to interact:
-\\6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
+\n 6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
 In order to hadle the button click event, was used buttonCustom.setOnClickListener(in this method is implemented OnClickListener from Button class, with custom activity).
-\\[Example]
+\n [Example]
 	{buttonCustom.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View viewId){
