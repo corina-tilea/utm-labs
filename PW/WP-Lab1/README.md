@@ -19,10 +19,11 @@ setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to
 5.  2 TextView elements had been added to the activity (one with default styles, one with custom style).
 
 6. 2 elements had been made to interact:
-\n 6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
+ 
+6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
 In order to hadle the button click event, was used buttonCustom.setOnClickListener(in this method is implemented OnClickListener from Button class, with custom activity).
-\n [Example]
-	{buttonCustom.setOnClickListener(
+[Example]
+	buttonCustom.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View viewId){
                         textViewCustom.setTextColor(Color.RED);
@@ -30,8 +31,9 @@ In order to hadle the button click event, was used buttonCustom.setOnClickListen
                     }
 
                 }
-        );}
-\\6.2. On Long click Event has been implemented over default text element, by setOnLongClickListener() method.
+        );
+
+6.2. On Long click Event has been implemented over default text element, by setOnLongClickListener() method.
 
 In order to arrange the items on the activity, RelativeLayout was used. 
  mainActivityLayout.addView metdhos recieves as parameters the widget to be added and the Layout according to which to arrange it on the activity.
