@@ -2,7 +2,7 @@ Create a README.md file for each laboratory work you submit. It should include t
 Explain the features that you had been added to your window.
 Lab1.
 
-Implemented Tasks Description:
+**Implemented Tasks Description:**
 
 1. Basic Android application has been created, having one Main Activity. Which extends AppCompatActivity class. Extending this class provides the posibility to implement/use some very important methods as (OnCreate, findViewById...)
 
@@ -13,8 +13,10 @@ Implemented Tasks Description:
 4. 2 Buttons had been added to the activity. One with default and other with custom style.
 Buttons where created using Button class, from android.widget.Button package. 
 For customization of the button were used methods like: 
-setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to set button width in pixels, was necessary to convert display units to pixels has been used: 
-\\  int customBtnWidthPx=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 260, resourcesRef.getDisplayMetrics());
+setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to set button width in pixels, was necessary to convert display units to pixels has been used:  
+```java
+int customBtnWidthPx=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 260, resourcesRef.getDisplayMetrics());
+```
 
 5.  2 TextView elements had been added to the activity (one with default styles, one with custom style).
 
@@ -23,6 +25,7 @@ setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to
 6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
 In order to hadle the button click event, was used buttonCustom.setOnClickListener(in this method is implemented OnClickListener from Button class, with custom activity).
 [Example]
+```java
 	buttonCustom.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View viewId){
@@ -32,6 +35,8 @@ In order to hadle the button click event, was used buttonCustom.setOnClickListen
 
                 }
         );
+```
+
 
 6.2. On Long click Event has been implemented over default text element, by setOnLongClickListener() method.
 
