@@ -1,6 +1,3 @@
-Create a README.md file for each laboratory work you submit. It should include the tasks that you had been implemented.
-Explain the features that you had been added to your window.
-Lab1.
 
 **Implemented Tasks Description:**
 
