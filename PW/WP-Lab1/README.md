@@ -10,7 +10,7 @@ Lab1.
 
 3. On screen "resize"(actually on screen rotation),the text remains in the middle (vertically and horizontally). For this was used setGravity(Gravity.CENTER) method.
 
-4. 2 Buttons had been added to the activity. One with default and other with custom style.
+4.  2 Buttons had been added to the activity. One with default and other with custom style.
 Buttons where created using Button class, from android.widget.Button package. 
 For customization of the button were used methods like: 
 setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to set button width in pixels, was necessary to convert display units to pixels has been used:  
@@ -20,7 +20,7 @@ int customBtnWidthPx=(int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 
 5.  2 TextView elements had been added to the activity (one with default styles, one with custom style).
 
-6. 2 elements had been made to interact:
+6.  2 elements had been made to interact:
  
 6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
 In order to hadle the button click event, was used buttonCustom.setOnClickListener(in this method is implemented OnClickListener from Button class, with custom activity).
@@ -42,5 +42,6 @@ In order to hadle the button click event, was used buttonCustom.setOnClickListen
 
 In order to arrange the items on the activity, RelativeLayout was used. 
  mainActivityLayout.addView metdhos recieves as parameters the widget to be added and the Layout according to which to arrange it on the activity.
+
 
 
