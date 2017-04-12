@@ -21,7 +21,8 @@ setText, setBackgroundColor, setTextColor, setPadding, set Typeface. In order to
 6. 2 elements had been made to interact:
 \\6.1. On button(Custom Button) click - the Custom Text size, color and value is changed.)
 In order to hadle the button click event, was used buttonCustom.setOnClickListener(in this method is implemented OnClickListener from Button class, with custom activity).
-\\[Example]: buttonCustom.setOnClickListener(
+\\[Example]
+	{buttonCustom.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View viewId){
                         textViewCustom.setTextColor(Color.RED);
@@ -29,7 +30,7 @@ In order to hadle the button click event, was used buttonCustom.setOnClickListen
                     }
 
                 }
-        );
+        );}
 \\6.2. On Long click Event has been implemented over default text element, by setOnLongClickListener() method.
 
 In order to arrange the items on the activity, RelativeLayout was used. 
