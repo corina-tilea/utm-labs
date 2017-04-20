@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+   <Button
+       android:id="@+id/draw_line_0"
+       android:text="Draw Line 0"
+       android:layout_gravity="center_horizontal"
+       android:layout_height="wrap_content"
+       android:layout_width="wrap_content"/>
+    <Button
+        android:id="@+id/draw_line_1"
+        android:text="Draw Line 1"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+    <Button
+        android:id="@+id/draw_line_2"
+        android:text="Draw Line 2"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+    <Button
+        android:id="@+id/draw_line_3"
+        android:text="Draw Line 3"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+    <Button
+        android:id="@+id/draw_line_4"
+        android:text="Draw Line 4"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+
+    <Button
+        android:id="@+id/draw_rectangle"
+        android:text="Draw Rectangle"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+    <Button
+        android:id="@+id/draw_circle"
+        android:text="Draw Circle"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+    <Button
+        android:id="@+id/draw_bezier_curves"
+        android:text="Draw Bezier"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"/>
+
+</LinearLayout>
