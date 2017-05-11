@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.iucosoft.android.eventdrivelab4.MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:layout_width="280dp"
+            android:layout_height="75dp"
+            android:text="START"
+            android:id="@+id/btn_start"
+            android:textColor="#ffffff"
+            android:background="#390251"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="LAB #4 Event Driven Programming"
+        android:id="@+id/textView"
+        android:layout_above="@+id/linearLayout"
+        android:layout_alignStart="@+id/linearLayout"
+        android:layout_marginBottom="86dp"
+        android:layout_alignEnd="@+id/linearLayout"
+        android:gravity="center_horizontal"
+        android:textStyle="bold"
+        android:textSize="30dp" />
+
+
+</RelativeLayout>
