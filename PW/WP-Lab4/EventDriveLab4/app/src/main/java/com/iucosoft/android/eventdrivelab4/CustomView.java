@@ -114,7 +114,6 @@ public class CustomView extends View implements Runnable{
                         paint.setColor(ballObject.getColor());
                         paint.setStrokeWidth(5);
                         paint.setStyle(Paint.Style.FILL);
-                        //paint.setShader(new LinearGradient(0, 0, 0, getHeight(), ballObject.getColor(), Color.BLACK, Shader.TileMode.MIRROR));
 
                         int posX=ballObject.getCoordinates().getxAxisPosition();
                         int posY=ballObject.getCoordinates().getyAxisPosition();
@@ -131,8 +130,6 @@ public class CustomView extends View implements Runnable{
 
                         if(ballObject.getCoordinates().getxAxisPosition()<=ballRadius || ballObject.getCoordinates().getxAxisPosition()>=screenWidth-ballRadius){
 
-
-                           // ballObject.setShape(SQUARE_SHAPE);
                             paint.setColor(ballObject.getColor());
                             paint.setStrokeWidth(5);
                             paint.setStyle(Paint.Style.FILL);
@@ -263,7 +260,6 @@ public class CustomView extends View implements Runnable{
 
     private void checkTransformations(double distance_1_2, double distance_2_3, double distance_1_3) {
         if(shape1==CIRCLE_SHAPE && shape2==CIRCLE_SHAPE && distance_1_2<2*ballRadius){
-
 
                 Ball ball1=ballsList.get(0);
                 Ball ball2=ballsList.get(1);
