@@ -1,0 +1,1 @@
+#This file will show all of the dependencies (including specific versions) of the python packages that the project is using.
