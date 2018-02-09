@@ -1,5 +1,5 @@
-#Python compiled files 
-*.pyc
+#Java compiled files 
+*.class
 
 .idea/workspace.xml
 
