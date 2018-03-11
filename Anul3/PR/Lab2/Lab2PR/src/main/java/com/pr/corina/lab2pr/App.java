@@ -57,14 +57,10 @@ public class App {
                 checked++;
             }else if(!category.isChecked()){
                 iterateList(categoryList, category, compareCategory);
-                
             }
-            
-            
         }
          if(checked<categoryListInitial.size())
              initCategoryList(categoryListInitial, categoryList);
-        
     }
     
     public static void iterateList(List<Category>categoryListToIterate, Category subCategory, Category parentCategory){
@@ -80,8 +76,6 @@ public class App {
                 iterateList(category.getCategoryList(), subCategory, parentCategory);
             }
         }
-        
-    
     }
     
     public static void initCategoryMap(Map<Category, List<Category>>categoryMap, List<Category>categoryList){

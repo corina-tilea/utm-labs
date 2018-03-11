@@ -9,7 +9,6 @@ package com.pr.corina.lab2pr.entities;
 import com.pr.corina.lab2pr.utils.DoubleConverter;
 import java.io.Serializable;
 import java.util.Date;
-import net.sf.jsefa.common.converter.BigDecimalConverter;
 import net.sf.jsefa.csv.annotation.CsvDataType;
 import net.sf.jsefa.csv.annotation.CsvField;
 
@@ -33,9 +32,6 @@ public class Order implements Serializable{
     
     @CsvField(pos = 4, format = "yyyy-MM-dd", required = true)
     private Date createdAt;
-
-    
-   
 
     public Order() {
     }
@@ -76,7 +72,4 @@ public class Order implements Serializable{
     public String toString() {
         return "Order{" + "id=" + id + ", total=" + total + ", categoryId=" + categoryId + ", createdAt=" + createdAt + '}';
     }
-
-   
-    
 }

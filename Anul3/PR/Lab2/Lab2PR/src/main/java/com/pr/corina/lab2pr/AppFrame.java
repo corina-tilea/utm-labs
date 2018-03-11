@@ -56,15 +56,12 @@ public class AppFrame extends javax.swing.JFrame {
     }
 
     public void reloadTree(){
-           
            DefaultMutableTreeNode baseNode = new DefaultMutableTreeNode("All Categories Data");
            loadTreeNodes(baseNode, App.getCategoryList());
            jTree=new JTree(baseNode);
            jScrollPane.setViewportView(jTree);
            jTree.setSize(720,400);
            jTree.setVisible(Boolean.TRUE);
-//           DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
-//           model.reload(baseNode);
            jScrollPane.repaint();
     }
     
@@ -75,11 +72,8 @@ public class AppFrame extends javax.swing.JFrame {
              System.out.println("Category_id="+category.getId());
               DefaultMutableTreeNode defaultNode = new DefaultMutableTreeNode(category.getId()+"."+category.getName()+"-"+category.getTotal());
               baseNode.add(defaultNode);
-              if(!category.getCategoryList().isEmpty()){
+              if(!category.getCategoryList().isEmpty())
                   loadTreeNodes(defaultNode, category.getCategoryList());
-              }
-         
-          
          }
     }
     
@@ -220,27 +214,9 @@ public class AppFrame extends javax.swing.JFrame {
         System.out.println("==== Generation is Done====");
         repaint();
         revalidate();
-        
     }
     }; 
            worker.execute();
-        
-//        System.out.println("===== Generation Start======");
-//        System.out.println("**"+javax.swing.SwingUtilities.isEventDispatchThread());
-//        // 1. Get Dates From jFormatterFields
-//        String dateFrom=jFormattedFieldFrom.getText();
-//        String dateTo=jFormattedFieldTo.getText();
-//          System.out.println("Date From:"+dateFrom);
-//          System.out.println("Date To:"+dateTo);
-//        // 2. Get Method        
-//        App.initApp(dateFrom, dateTo);
-//        // 3. Load Tree
-//        reloadTree();
-//        
-//        this.repaint();
-//        this.revalidate();
-//        System.out.println("===== Generation End======");
-        
     }//GEN-LAST:event_jBtnGenerateActionPerformed
 
     
