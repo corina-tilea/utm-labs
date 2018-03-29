@@ -207,7 +207,7 @@ public class AppFrame extends javax.swing.JFrame {
         reloadTree();
         publish("Work is done!");
         return 1;
-    }
+    } 
 
     @Override
     public void done() {

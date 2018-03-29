@@ -5,6 +5,8 @@ import com.pr.corina.lab2pr.entities.Order;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
@@ -17,16 +19,43 @@ public class App {
     private static int checked=0;
     private static List<Order>orderList;
     private static List<Category>categoryList;
+    private static List<Category>categoryListInitial;
     
     public static void main( String[] args ){
-        
+        initApp("2018-01-01", "2018-03-01", Boolean.TRUE);
     }
     
     public static void initApp(String dateFrom, String dateTo, Boolean loadFromURL){
-        orderList=AppHttpClient.executeGetMethodRequest(Constants.URL_ORDERS, "?start="+dateFrom+"&end="+dateTo, loadFromURL);
         
-        List<Category>categoryListInitial=AppHttpClient.executeGetMethodRequest(Constants.URL_CATEGORIES, "", loadFromURL);
-       
+        long timeStart=System.currentTimeMillis();
+        
+        Thread thread1 = new Thread() {
+        public void run() {
+               orderList=AppHttpClient.executeGetMethodRequest(Constants.URL_ORDERS, "?start="+dateFrom+"&end="+dateTo, loadFromURL);
+                }
+        };
+        Thread thread2 = new Thread() {
+        public void run() {
+            categoryListInitial=AppHttpClient.executeGetMethodRequest(Constants.URL_CATEGORIES, "", loadFromURL);
+            }
+        };
+
+        // Start the Get Methods.
+        thread1.start();
+        thread2.start();
+        
+        try {
+            // Wait for them both to finish
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       long timeEnd=System.currentTimeMillis();
+        System.out.println("Requests TIME="+(timeEnd-timeStart)/1000+" sec.");
+
+        
         aggregateSumsToCategories(orderList, categoryListInitial);
         categoryList=new ArrayList();
         initCategoryList(categoryListInitial, categoryList);
