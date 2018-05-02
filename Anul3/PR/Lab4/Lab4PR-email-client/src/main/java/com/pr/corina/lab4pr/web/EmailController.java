@@ -73,42 +73,42 @@ public class EmailController {
 
     @RequestMapping(value = "emails/", method = RequestMethod.GET)
     public String viewEmails(Model model, HttpServletRequest request) {
-        ModelAndView modelAndView = null;
-        try {
             logger.debug("viewEmails()");
             User user = (User) request.getSession().getAttribute("userObj");
-            initSession(user.getEmail(), user.getPassword());
+            if(user!=null){
+                if(session==null)
+                    initSession(user.getEmail(), user.getPassword());
+               
+                List<MessageWrapper> emails;
+                Object emailsFromSession=request.getSession().getAttribute("emails");
+                if(emailsFromSession!=null){
+                    emails=(List<MessageWrapper>)emailsFromSession;
+                }else
+                    emails=new ArrayList<>();
+                        
+                model.addAttribute("emails", emails);
 
-            List<MessageWrapper> emails = new ArrayList();
-            //readEmails(0, 20);
-            model.addAttribute("emails", emails);
-            int unreadMsgs = inbox.getUnreadMessageCount();
-            model.addAttribute("unreadMsgs", unreadMsgs);
-
-            model.addAttribute("nrOfEmails", new String());
-            model.addAttribute("newEmail", new Email());
-
-        } catch (MessagingException ex) {
-            Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return "email/email-list";
+                initUnreadMessages(model);
+                
+                return "email/email-list";
+            }else{
+                return "redirect:/login";
+            }
     }
 
     @RequestMapping(value = "/new-email", method = RequestMethod.GET)
     public String newEmail(Model model, HttpServletRequest request) {
-        try {
-            Email newEmail = new Email();
-            model.addAttribute("email", newEmail);
+            User user = (User) request.getSession().getAttribute("userObj");
+            if(user!=null){
+                Email newEmail = new Email();
+                model.addAttribute("email", newEmail);
+
+                initUnreadMessages(model);
             
-            int unreadMsgs = inbox.getUnreadMessageCount();
-            model.addAttribute("unreadMsgs", unreadMsgs);
-            
-        } catch (MessagingException ex) {
-            Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return "email/new-email";
+                return "email/new-email";
+            }else{
+                return "redirect:/login";
+            }
     }
 
 
@@ -116,51 +116,55 @@ public class EmailController {
     public String sendEmailNew(@Valid Email email, BindingResult result,
                                @RequestParam(value = "sendParam") String sendOrDraft, 
                                ModelMap model, HttpServletRequest request) throws IOException {
-        logger.info(" in uploadDocument()");
-        if (result.hasErrors()) {
-            logger.warn(" in uploadDocument()- warning validation errors");
-            return "redirect:/new-email";
-        } else {
+        User user = (User) request.getSession().getAttribute("userObj");
+        if(user!=null){
+            logger.info(" in uploadDocument()");
+            if (result.hasErrors()) {
+                logger.warn(" in uploadDocument()- warning validation errors");
+                return "redirect:/new-email";
+            } else {
 
-            String filePath = "";
-            if (email.getFileAttach() != null && !email.getFileAttach().isEmpty()) {
-                filePath = request.getServletContext().getRealPath("/") + email.getFileAttach().getOriginalFilename();
-                email.getFileAttach().transferTo(new File(filePath));
-                System.out.println("Fetching file" + email.getFileAttach().getSize());
-                System.out.println("Fetching file name=" + email.getFileAttach().getOriginalFilename());
-            }
-            User user = (User) request.getSession().getAttribute("userObj");
-            JavaMailSenderImpl mailSender = connectToEmail(user.getEmail(), user.getPassword());
-
-            if (sendOrDraft.equalsIgnoreCase("Send Email")) {
-                logger.info(" send email");
-                try {
-                    logger.info("*** Email subject=" + email.getSubject());
-                    mailSender.send(EmailUtil.getMessagePreparator(email, user.getEmail(), filePath));
-                    logger.info("Email Sent Successfull!");
-
-                } catch (MailException ex) {
-                    logger.error(ex.getMessage());
+                String filePath = "";
+                if (email.getFileAttach() != null && !email.getFileAttach().isEmpty()) {
+                    filePath = request.getServletContext().getRealPath("/") + email.getFileAttach().getOriginalFilename();
+                    email.getFileAttach().transferTo(new File(filePath));
+                    System.out.println("Fetching file" + email.getFileAttach().getSize());
+                    System.out.println("Fetching file name=" + email.getFileAttach().getOriginalFilename());
                 }
+                JavaMailSenderImpl mailSender = connectToEmail(user.getEmail(), user.getPassword());
 
-            } else if (sendOrDraft.equalsIgnoreCase("Save to Drafts")) {
+                if (sendOrDraft.equalsIgnoreCase("Send Email")) {
+                    logger.info(" send email");
+                    try {
+                        logger.info("*** Email subject=" + email.getSubject());
+                        mailSender.send(EmailUtil.getMessagePreparator(email, user.getEmail(), filePath));
+                        logger.info("Email Sent Successfull!");
 
-                try {
-                    initDraftsFolder();
-                    MimeMessage mimeMessage = new MimeMessage(session);
-                    mimeMessage.setFlag(Flags.Flag.SEEN, true);
-                    mimeMessage.setFlag(Flags.Flag.DRAFT, true);
-                    EmailUtil.initMessage(mimeMessage, user.getEmail(), email, filePath);
-                    Message[] msgs = {mimeMessage};
-                    drafts.appendMessages(msgs);
-                    drafts.close(true);
+                    } catch (MailException ex) {
+                        logger.error(ex.getMessage());
+                    }
 
-                    logger.info("Email Saved to Drafts");
-                } catch (MessagingException ex) {
-                    Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
+                } else if (sendOrDraft.equalsIgnoreCase("Save to Drafts")) {
+
+                    try {
+                        initDraftsFolder();
+                        MimeMessage mimeMessage = new MimeMessage(session);
+                        mimeMessage.setFlag(Flags.Flag.SEEN, true);
+                        mimeMessage.setFlag(Flags.Flag.DRAFT, true);
+                        EmailUtil.initMessage(mimeMessage, user.getEmail(), email, filePath);
+                        Message[] msgs = {mimeMessage};
+                        drafts.appendMessages(msgs);
+                        drafts.close(true);
+
+                        logger.info("Email Saved to Drafts");
+                    } catch (MessagingException ex) {
+                        Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
+                return "redirect:/emails";
             }
-            return "redirect:/emails";
+        }else{
+             return "redirect:/login";
         }
     }
 
@@ -190,39 +194,57 @@ public class EmailController {
 
     @RequestMapping(value = "/last-emails", method = RequestMethod.POST)
     public String viewLastNEmails(@ModelAttribute("nrOfEmails") String nrOfEmails,
-            BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
+            BindingResult result, Model model, HttpServletRequest request,final RedirectAttributes redirectAttributes) {
+            User user = (User) request.getSession().getAttribute("userObj");
+            if(user!=null){
+                logger.debug("viewLastNEmails() : {}", nrOfEmails);
 
-        logger.debug("viewLastNEmails() : {}", nrOfEmails);
-        try {
+                List<MessageWrapper> emails = readEmails(0, Integer.parseInt(nrOfEmails));
+                model.addAttribute("emails", emails);
 
-            List<MessageWrapper> emails = readEmails(0, Integer.parseInt(nrOfEmails));
-            model.addAttribute("emails", emails);
-            int unreadMsgs = inbox.getUnreadMessageCount();
-            model.addAttribute("unreadMsgs", unreadMsgs);
+                initUnreadMessages(model);
 
-        } catch (MessagingException ex) {
-            Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "email/email-list";
+                return "email/email-list";
+            }else{
+                return "redirect:/login";
+            }
     }
 
-    @RequestMapping("/view-email-details/{emailIndex}")
-    public String viewEmailDetails(@PathVariable("emailIndex") Integer emailIndex, Model model, HttpServletRequest request) {
-        logger.debug("viewEmailDetails() : {}", emailIndex);
-        List<MessageWrapper> emails = (List<MessageWrapper>) request.getSession().getAttribute("emails");
-        MessageWrapper msg = emails.get(emailIndex);
-        model.addAttribute("email", msg);
+    public void initUnreadMessages(Model model){
         try {
-            msg.getMessage().setFlag(Flags.Flag.SEEN, true);
+            int unreadMsgs = inbox.getUnreadMessageCount();
+            model.addAttribute("unreadMsgs", unreadMsgs);
         } catch (MessagingException ex) {
             Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "email/email-details";
+
+    }
+    
+    @RequestMapping("/view-email-details/{emailIndex}")
+    public String viewEmailDetails(@PathVariable("emailIndex") Integer emailIndex, Model model, HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("userObj");
+        if(user!=null){
+            logger.debug("viewEmailDetails() : {}", emailIndex);
+            List<MessageWrapper> emails = (List<MessageWrapper>) request.getSession().getAttribute("emails");
+            MessageWrapper msg = emails.get(emailIndex);
+            model.addAttribute("email", msg);
+
+            initUnreadMessages(model);
+
+            try {
+                msg.getMessage().setFlag(Flags.Flag.SEEN, true);
+            } catch (MessagingException ex) {
+                Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return "email/email-details";
+        }else{
+             return "redirect:/login";
+        }
     }
 
     public void initDraftsFolder() {
         try {
-
+            
             drafts = store.getFolder("[Gmail]/Drafts");
             drafts.open(Folder.READ_WRITE);
 

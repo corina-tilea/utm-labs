@@ -1,0 +1,21 @@
+.checkbox-inline label, .radio-inline label{
+  font-weight: normal;
+}
+.width-250{
+    width: 250px;
+}
+.width-400{
+    width: 400px;
+}
+.width-500{
+    width: 500px;
+}
+.text-bold{
+    font-weight: 700;
+}
+.text-center-align{
+    text-align: center;
+}
+.text-size-19{
+    font-size: 19px;
+}

@@ -22,6 +22,7 @@
 			</div>
 		</c:if>
                 <spring:url value="/login" var="userActionUrl" />
+                <div class="col-sm-8 col-sm-offset-2">
                 <form:form class="form-signin" method="post" modelAttribute="userForm" action="${userActionUrl}">
 
 	
@@ -31,7 +32,7 @@
                         <form:input path="email" class="form-control" id="email" placeholder="Email address" />
                         <form:errors path="email" class="control-label" />
                     </spring:bind>
-                        
+                    <br/>
                     <spring:bind path="password">    
                         <label for="inputPassword" class="sr-only">Password</label>
                         <form:password path="password" class="form-control" id="password" placeholder="Password" />
@@ -44,7 +45,7 @@
                     </div>
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </form:form>
-                
+                </div>
 <!--                <form class="form-signin">
                     <h2 class="form-signin-heading">Please sign in</h2><br/>
                     <label for="inputEmail" class="sr-only">Email address</label>

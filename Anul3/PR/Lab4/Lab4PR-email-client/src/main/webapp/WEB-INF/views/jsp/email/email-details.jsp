@@ -11,6 +11,7 @@
 <jsp:include page="../fragments/header.jsp" />
 
 <body>
+    <spring:url value="/emails" var="emails" />
 
 	<div class="container">
 
@@ -22,10 +23,11 @@
 				<strong>${msg}</strong>
 			</div>
 		</c:if>
-            <a href="#">Inbox <span class="badge">${unreadMsgs}</span></a>
-            
+            <a href="${emails}">Inbox <span class="badge">${unreadMsgs}</span></a>
+            <hr/>
             <br/>
-            <strong>Email Details Page:</strong>
+            <div class="text-center-align text-size-19 text-bold" >Email Details Page:</div>
+            <br/>
             <br/>
 
             <!-- Modal Email Details-->

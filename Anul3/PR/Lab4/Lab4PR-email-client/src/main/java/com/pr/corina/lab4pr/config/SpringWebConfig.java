@@ -16,8 +16,8 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({ "com.mkyong.form.web", "com.mkyong.form.service", "com.mkyong.form.dao",
-		"com.mkyong.form.exception", "com.mkyong.form.validator", "com.mkyong.form.model" })
+@ComponentScan({ "com.pr.corina.lab4pr.web", 
+		"com.pr.corina.lab4pr.exception", "com.pr.corina.lab4pr.validator", "com.pr.corina.lab4pr.model" })
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -31,8 +31,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 		return new StandardServletMultipartResolver();
 	}
   
-//    https://memorynotfound.com/spring-mvc-file-upload-example-validator/https://memorynotfound.com/spring-mvc-file-upload-example-validator/
-        
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
@@ -51,15 +49,6 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
 	    messageSource.setBasename("messages");
 	    return messageSource;
 	}
-    
-//    /**Optional. It's only required when handling '.' in @PathVariables which otherwise ignore everything after last '.' in @PathVaidables argument.
-//     * It's a known bug in Spring [https://jira.spring.io/browse/SPR-6164], still present in Spring 4.1.7.
-//     * This is a workaround for this issue.
-//     */
-//    @Override
-//    public void configurePathMatch(PathMatchConfigurer matcher) {
-//        matcher.setUseRegisteredSuffixPatternMatch(true);
-//    }
-    
+
     
 }

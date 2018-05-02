@@ -14,11 +14,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.mail.ImapMailReceiver;
 import org.springframework.integration.mail.MailReceiver;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -58,10 +58,16 @@ public class LoginController {
                 model.addAttribute("userForm", user);
                 
 		return "email/login";
-
+	}
+        @RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(Model model,  HttpServletRequest request) {
+                
+                request.getSession().setAttribute("userObj", null);
+                request.getSession().invalidate();
+		
+		return "redirect:/login";
 	}
         
-        // save or update user
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginUser(@ModelAttribute("userForm") @Validated User user,
 			BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
@@ -70,31 +76,17 @@ public class LoginController {
 
 		if (result.hasErrors()) {
                     logger.info("HAS ERRORS!");
-
-			return "email/login";
+                    return "email/login";
 		} else {
-                    logger.info("NO ERRORS!");
-			//JavaMailSenderImpl mailSender=connectToEmail(user.getEmail(), user.getPassword());
-//                        try {
-//                            mailSender.send(EmailUtil.getMessagePreparator());
-//                            System.out.println("Message Send...Hurrey");
-//                        } catch (MailException ex) {
-//                            System.err.println(ex.getMessage());
-//                        }
-                        
-                        boolean validCredentials=emailUtils.testCredentials(user.getEmail(), user.getPassword());
-                        if(validCredentials){
-                            model.addAttribute("userObj", user);
-                            return "redirect:/emails/";
-                        }else{
-                            return "email/login";
-                        }
+                    boolean validCredentials=emailUtils.testCredentials(user.getEmail(), user.getPassword());
+                    if(validCredentials){
+                        model.addAttribute("userObj", user);
+                        return "redirect:/emails/";
+                    }else{
+                        return "email/login";
+                    }
 		}
-
 	}
-        
-       
-        
         
         public void connectToReadEmails(String email, String password){
             System.out.println("Emai="+email+", pass="+password);
@@ -104,16 +96,7 @@ public class LoginController {
            try {
                Message[] msgs=receiver.receive();
                 logger.info("HAS ERRORS!"+msgs[0].getSubject());
-               
-               // for IMAP
-//        String protocol = "imap";
-//        String host = "imap.gmail.com";
-//        String port = "993";
-//
-//
-// 
-//        EmailReceiver receiver = new EmailReceiver();
-//        receiver.downloadEmails(protocol, host, port, email, password);
+
            } catch (MessagingException ex) {
                Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
            }
