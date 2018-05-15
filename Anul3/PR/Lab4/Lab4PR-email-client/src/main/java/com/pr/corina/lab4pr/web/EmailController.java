@@ -66,8 +66,8 @@ public class EmailController {
 
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(EmailController.class);
 
-    Session session;// = Session.getDefaultInstance(new Properties( ));
-    Store store;// = session.getStore("imaps");
+    Session session;
+    Store store;
     Folder inbox;
     Folder drafts;
 
@@ -297,11 +297,9 @@ public class EmailController {
     public List<MessageWrapper> readEmails(int startFrom, int quantity) {
         List<Message> partMessages = null;
         List<MessageWrapper> messageWrapper = null;
-        try {
-
+        try{
             Message[] messages = inbox.
                     search(new FlagTerm(new Flags(Flags.Flag.SEEN), false));
-
             Message[] partMessageArr = new Message[quantity];
             partMessageArr = Arrays.copyOfRange(messages, messages.length - quantity - 1, messages.length - 1);
             List<Message> messagesList = Arrays.asList(partMessageArr);
@@ -318,14 +316,11 @@ public class EmailController {
                     return 0;
                 }
             });
-
             messageWrapper = convertMessagesToWrapper(messagesList);
-
         } catch (MessagingException ex) {
             Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return messageWrapper;
-
     }
 
     public JavaMailSenderImpl connectToEmail(String email, String password) {

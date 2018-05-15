@@ -24,7 +24,7 @@
 			</div>
 		</c:if>
             <br/>
-            <a href="${emails-url}">Inbox <span class="badge">${unreadMsgs}</span></a>
+            
             <hr/>
             <spring:url value="/last-emails" var="lastEmailsAction" />
             <br/>

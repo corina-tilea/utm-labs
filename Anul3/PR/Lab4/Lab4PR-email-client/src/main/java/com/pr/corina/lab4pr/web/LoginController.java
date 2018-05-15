@@ -62,9 +62,8 @@ public class LoginController {
         @RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model,  HttpServletRequest request) {
                 
-                request.getSession().setAttribute("userObj", null);
+                request.getSession().removeAttribute(null);
                 request.getSession().invalidate();
-		
 		return "redirect:/login";
 	}
         
@@ -73,7 +72,6 @@ public class LoginController {
 			BindingResult result, Model model, final RedirectAttributes redirectAttributes) {
 
 		logger.debug("loginUser() : {}", user);
-
 		if (result.hasErrors()) {
                     logger.info("HAS ERRORS!");
                     return "email/login";
