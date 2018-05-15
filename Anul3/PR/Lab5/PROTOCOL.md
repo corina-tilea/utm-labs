@@ -11,7 +11,7 @@ This document's purpose is to define the protocol used in comunication between t
 - If the entered command does not match any of the supported by the server command, it will return an informative message, proposing a possible command if there is found one(being alike the entered one).
 
 
-**2. Supported commands.**
+**2. Supported commands.**<br/>
 **- /help**<br/>
 [Format]: no parameters are allowed;<br/>
 [Returned value]: Text consisting of all the supported commands by the server, together with their description(format and returned value);<br/>
