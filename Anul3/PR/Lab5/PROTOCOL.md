@@ -22,22 +22,22 @@ This document's purpose is to define the protocol used in comunication between t
 ⋅⋅⋅ To view supported commands /help.
 
 **- /hello {parameter}**
-[Format]: The parameters are entered after a blank-space next to the command name.
+[Format]: The parameters are entered after a blank-space next to the command name.<br/>
 [Returned value]: A parameterized text with the word(s) given as parameters(arguments) to the command.
 ⋅⋅⋅We are happy to wellcome you, Corina Tilea. This is a parameterized greeting message.
 
 **- /time - this (no parameters allowed) command** 
-[Format]: no parameters are allowed;
+[Format]: no parameters are allowed;<br/>
 [Returned value]: the current date and time;
 ⋅⋅⋅ Current time in Сhişinău: 15-05-2018 23:00:04
 
 **- /password**
-[Format]: no parameters are allowed;
+[Format]: no parameters are allowed;<br/>
 [Returned value]: a alphanumeric random generated password;
 ⋅⋅⋅ aTBy9cngDT1p
 
 **- /entertain-me**
-[Format]: no parameters are allowed;
+[Format]: no parameters are allowed; <br/>
 [Returned value]: a randomly selected joke, from the server's jokes bank.
 ⋅⋅⋅ My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away.
 
