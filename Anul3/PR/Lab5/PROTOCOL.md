@@ -12,9 +12,9 @@ This document's purpose is to define the protocol used in comunication between t
 
 
 **2. Supported commands.**
-- /help<br/>
+**- /help**<br/>
 [Format]: no parameters are allowed;<br/>
-[Returned value]: Text consisting of all the supported commands by the server, together with their description(format and returned value);
+[Returned value]: Text consisting of all the supported commands by the server, together with their description(format and returned value);<br/>
 ⋅⋅⋅ To send parametric greeting /hello {text}
 ⋅⋅⋅ To view current time in Сhişinău enter /time
 ⋅⋅⋅ To generate a random alphanumeric-password /password
