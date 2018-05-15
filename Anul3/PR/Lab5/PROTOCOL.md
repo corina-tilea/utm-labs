@@ -12,8 +12,8 @@ This document's purpose is to define the protocol used in comunication between t
 
 
 **2. Supported commands.**
-- /help
-[Format]: no parameters are allowed;
+- /help<br/>
+[Format]: no parameters are allowed;<br/>
 [Returned value]: Text consisting of all the supported commands by the server, together with their description(format and returned value);
 ⋅⋅⋅ To send parametric greeting /hello {text}
 ⋅⋅⋅ To view current time in Сhişinău enter /time
@@ -21,22 +21,22 @@ This document's purpose is to define the protocol used in comunication between t
 ⋅⋅⋅ To receive a joke enter /entertain-me
 ⋅⋅⋅ To view supported commands /help.
 
-**- /hello {parameter}**
+**- /hello {parameter}**<br/>
 [Format]: The parameters are entered after a blank-space next to the command name.<br/>
 [Returned value]: A parameterized text with the word(s) given as parameters(arguments) to the command.
 ⋅⋅⋅We are happy to wellcome you, Corina Tilea. This is a parameterized greeting message.
 
-**- /time - this (no parameters allowed) command** 
+**- /time - this (no parameters allowed) command** <br/>
 [Format]: no parameters are allowed;<br/>
 [Returned value]: the current date and time;
 ⋅⋅⋅ Current time in Сhişinău: 15-05-2018 23:00:04
 
-**- /password**
+**- /password**<br/>
 [Format]: no parameters are allowed;<br/>
 [Returned value]: a alphanumeric random generated password;
 ⋅⋅⋅ aTBy9cngDT1p
 
-**- /entertain-me**
+**- /entertain-me**<br/>
 [Format]: no parameters are allowed; <br/>
 [Returned value]: a randomly selected joke, from the server's jokes bank.
 ⋅⋅⋅ My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away.
