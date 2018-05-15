@@ -228,9 +228,7 @@ public class EmailController {
             List<MessageWrapper> emails = (List<MessageWrapper>) request.getSession().getAttribute("emails");
             MessageWrapper msg = emails.get(emailIndex);
             model.addAttribute("email", msg);
-
             initUnreadMessages(model);
-
             try {
                 msg.getMessage().setFlag(Flags.Flag.SEEN, true);
             } catch (MessagingException ex) {

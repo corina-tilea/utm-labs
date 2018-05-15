@@ -41,9 +41,7 @@ public class EmailUtil {
     private final org.slf4j.Logger logger = LoggerFactory.getLogger(EmailUtil.class);
 
      public static MimeMessagePreparator getMessagePreparator(final Email email, final String from, final String filePath) {
-
         MimeMessagePreparator preparator = new MimeMessagePreparator() {
-
             public void prepare(MimeMessage mimeMessage) throws Exception {
                 initMessage(mimeMessage, from, email, filePath);
             }
@@ -55,10 +53,8 @@ public class EmailUtil {
                 mimeMessage.setFrom(from);
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(email.getRecipient()));
-                
                 mimeMessage.setRecipient(Message.RecipientType.CC,
                         new InternetAddress(email.getCc()));
-                
                 mimeMessage.setText(email.getBody());
                 mimeMessage.setSubject(email.getSubject());
                 Multipart multipart = new MimeMultipart();
@@ -75,7 +71,6 @@ public class EmailUtil {
                     multipart.addBodyPart(attachmentBodyPart); // add the attachement part
                 }
                 mimeMessage.setContent(multipart);
-                
      }
      public static void prepareMessageForDraft(final Email email, final String from, final String filePath, final Folder drafts) {
          
