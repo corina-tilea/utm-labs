@@ -15,29 +15,29 @@ This document's purpose is to define the protocol used in comunication between t
 **- /help**<br/>
 [Format]: no parameters are allowed;<br/>
 [Returned value]: Text consisting of all the supported commands by the server, together with their description(format and returned value);<br/>
-	To send parametric greeting /hello {text}<br/>
-	To view current time in Сhişinău enter /time<br/>
-	To generate a random alphanumeric-password /password<br/>
-	To receive a joke enter /entertain-me<br/>
-	To view supported commands /help.<br/>
+*To send parametric greeting /hello {text}<br/>
+To view current time in Сhişinău enter /time<br/>
+To generate a random alphanumeric-password /password<br/>
+To receive a joke enter /entertain-me<br/>
+To view supported commands /help.<br/>*
 
 **- /hello {parameter}**<br/>
 [Format]: The parameters are entered after a blank-space next to the command name.<br/>
 [Returned value]: A parameterized text with the word(s) given as parameters(arguments) to the command.<br/>
-	We are happy to wellcome you, Corina Tilea. This is a parameterized greeting message.
+*We are happy to wellcome you, Corina Tilea. This is a parameterized greeting message.*
 
 **- /time - this (no parameters allowed) command** <br/>
 [Format]: no parameters are allowed;<br/>
 [Returned value]: the current date and time;<br/>
-	Current time in Сhişinău: 15-05-2018 23:00:04
+*Current time in Сhişinău: 15-05-2018 23:00:04*
 
 **- /password**<br/>
 [Format]: no parameters are allowed;<br/>
 [Returned value]: a alphanumeric random generated password;<br/>
-	aTBy9cngDT1p
+*aTBy9cngDT1p*
 
 **- /entertain-me**<br/>
 [Format]: no parameters are allowed; <br/>
 [Returned value]: a randomly selected joke, from the server's jokes bank.<br/>
-	 My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away.
+*My dog used to chase people on a bike a lot. It got so bad, finally I had to take his bike away.*
 
