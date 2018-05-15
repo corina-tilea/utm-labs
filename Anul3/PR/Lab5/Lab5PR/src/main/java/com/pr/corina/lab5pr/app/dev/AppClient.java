@@ -51,8 +51,7 @@ public class AppClient {
                     while ((c = System.in.read()) != '\n') {
                         buf.append((char)c);
                     }
-                    
-                    //System.out.println("Client: " + buf);
+
                     pw.println(buf.toString());
                     pw.flush();
                     buf.setLength(0);
@@ -69,4 +68,3 @@ public class AppClient {
         }
     }
 }
-//https://www.cis.upenn.edu/~bcpierce/courses/629/papers/Java-tutorial/networking/sockets/_1_1KnockKnockChanges.html

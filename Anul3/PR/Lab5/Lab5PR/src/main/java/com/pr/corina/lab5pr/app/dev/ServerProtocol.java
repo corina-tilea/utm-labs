@@ -22,9 +22,7 @@ import java.util.Date;
 public class ServerProtocol {
     private static final int INITIALIZED= 0;
     private static final int WAITING_FOR_MESSAGE= 1;
-    
     private static final int NUMJOKES = 5;
-    
     private int state = INITIALIZED;
     
     public String processInput(String theInput) {
@@ -41,8 +39,7 @@ public class ServerProtocol {
                             ChatConstants.MSG_TUTORIAL_TIME+ChatConstants.PROTOCOL_NEW_LINE+
                             ChatConstants.MSG_TUTORIAL_PASSWORD+ChatConstants.PROTOCOL_NEW_LINE+
                             ChatConstants.MSG_TUTORIAL_JOKE+ChatConstants.PROTOCOL_NEW_LINE+
-                            ChatConstants.MSG_HELP+ChatConstants.PROTOCOL_NEW_LINE+
-                            ChatConstants.MSG_QUIT;
+                            ChatConstants.MSG_HELP+ChatConstants.PROTOCOL_NEW_LINE;
             } else if(theInput.startsWith(ChatConstants.CMD_HELLO)){
                 String messageParam=theInput.substring(7);
                 theOutput=ChatConstants.MSG_HELLO+messageParam+ChatConstants.PROTOCOL_NEW_LINE+
