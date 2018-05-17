@@ -1,6 +1,6 @@
 # Laboratory work 6 - tasks implementation
 
-##Algorithm of work:
+**Algorithm of work:**
 1. Wireshark application has been stared;
 2. Open 2 instances of Application: Corina and Corina-Instance-2;
 3. As there are more than 1 application running on the Computer, which make use of Internet, in the wireshark are displayed multiple transmitted packages(img1.png) ![alt text](images/img1.png).
@@ -11,7 +11,7 @@ In order to filter the packages the data was filtered according to `udp.port == 
 Studying a little bit the Chat-Application, had been identified 2 types of 'actions': Login or Connecting to the Chat, and Sending a message, that's why we will have to study 2 types/structures of packages.
 
 **6. Structure 1: Login(Connecting) to the Chat package**<br/>
-Package structure is presented in figure (img4.png).
+Package structure is presented in figure ![alt text](images/img4.png)..
 This is the sent package content. On the left side we have hexa-decimal representation of the package content, on the right we have the data in Ascii representation. In fact this is the transmitted data encoded in Base64.
 -The ASCII 'text' had been coppied, and converted through a Hex-to-String converter.<br/> 
 Coppied data:
@@ -40,7 +40,7 @@ Base64 Encoded - `ezp0eXBlIDpvbmxpbmUsIDp1c2VybmFtZSAiQ29yaW5hLVRyaWNreS1Vc2VyIn
 New Package Content-[1526506107098|7abf915e-3d79-4afc-a6ca-74a7fd8d89a6|:all|ezp0eXBlIDpvbmxpbmUsIDp1c2VybmFtZSAiQ29yaW5hLVRyaWNreS1Vc2VyIn0=]<br/>
 7.3. Encode to Base64 the package content - [MTUyNjUwNjEwNzA5OHw3YWJmOTE1ZS0zZDc5LTRhZmMtYTZjYS03NGE3ZmQ4ZDg5YTZ8OmFsbHxlenAwZVhCbElEcHZibXhwYm1Vc0lEcDFjMlZ5Ym1GdFpTQWlRMjl5YVc1aExWUnlhV05yZVMxVmMyVnlJbjA9]<br/>
 7.4. The package has been sent using PacketSender app. Data like: IP and Port had been retrieved from wireshark.<br/>
-7.5. The Tricky user had appeared in the chat. Moreover 3 new packages had appeared in the wireskark. Why 3? (1- the message of connection to the server, 2- two broadcasted messages to the users from the chat: Corina and Corina-Instance-2, In order to annouce them that there is a new user in the chat!)<br/>
+7.5. The Tricky user had appeared in the chat. Moreover 3 new packages had appeared in the wireskark. Why 3? (1- the message of connection to the server, 2- two broadcasted messages to the users from the chat: Corina and Corina-Instance-2, In order to announce them that there is a new user in the chat!) ![alt text](images/img6-user-appeared.png).<br/>
 
 
 
@@ -65,6 +65,7 @@ Content - [{:type :delivered}].
 9.5. New Built Message : [1526507747175|9ecf915e-3d79-4afc-a6ca-74a7fd8d89a6|b0662059-d19d-4943-b4c9-b376b1e4f6be|ezp0eXBlIDpjaGF0LCA6dHh0ICJIZXkgeW91LCB0aGlzIGlzIGEgbWVzc2FnIGZyb20gdGhlIHRyaWt5IHVzZXIhIn0=]<br/>
 9.6.Ecoded in Base64 :[MTUyNjUwNzc0NzE3NXw5ZWNmOTE1ZS0zZDc5LTRhZmMtYTZjYS03NGE3ZmQ4ZDg5YTZ8YjA2NjIwNTktZDE5ZC00OTQzLWI0YzktYjM3NmIxZTRmNmJlfGV6cDBlWEJsSURwamFHRjBMQ0E2ZEhoMElDSklaWGtnZVc5MUxDQjBhR2x6SUdseklHRWdiV1Z6YzJGbklHWnliMjBnZEdobElIUnlhV3Q1SUhWelpYSWhJbjA9] <br/>
 9.7.Sengind message to the user using Packet Sender.
+![alt text](img7-message-sent.png)
 
 
 
